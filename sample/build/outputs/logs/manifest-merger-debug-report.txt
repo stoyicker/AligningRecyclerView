@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:1:1-20:12
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:1:1-22:12
 	package
 		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:2:5-53
 		INJECTED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml
@@ -18,34 +18,35 @@ ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:5
 	android:name
 		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:7:5-18:19
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:7:5-20:19
 MERGED from [com.android.support:appcompat-v7:23.0.0] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.0] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/AndroidManifest.xml:22:5-20
-MERGED from [AnnoyODroid:library:unspecified] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/AnnoyODroid/library/unspecified/AndroidManifest.xml:11:5-14:19
 MERGED from [com.android.support:appcompat-v7:23.0.0] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.0] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:9:9-45
-	android:icon
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:11:9-41
+	android:fullBackupContent
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:9:9-42
 	android:allowBackup
-		ADDED from [AnnoyODroid:library:unspecified] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/AnnoyODroid/library/unspecified/AndroidManifest.xml:12:9-35
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:8:9-36
+	android:icon
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:10:9-43
 	android:theme
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:10:9-59
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:12:9-59
 activity#io.github.stoyicker.annoyodroid.sample.ui.activity.MainActivity
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:11:9-17:20
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:13:9-19:20
 	android:name
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:12:13-53
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:14:13-53
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:13:13-16:29
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:15:13-18:29
 action#android.intent.action.MAIN
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:14:17-68
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:16:17-68
 	android:name
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:14:25-66
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:15:17-76
+ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:17:17-76
 	android:name
-		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:15:27-74
+		ADDED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml:17:27-74
 uses-sdk
 INJECTED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.0.0] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/AndroidManifest.xml:20:5-43
@@ -59,3 +60,7 @@ MERGED from [com.android.support:support-v4:23.0.0] /home/jorge/Desktop/AnnoyODr
 	android:minSdkVersion
 		INJECTED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml
 		INJECTED from /home/jorge/Desktop/AnnoyODroid/sample/src/main/AndroidManifest.xml
+library
+ADDED from [AnnoyODroid:library:unspecified] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/AnnoyODroid/library/unspecified/AndroidManifest.xml:11:5-52
+	android:name
+		ADDED from [AnnoyODroid:library:unspecified] /home/jorge/Desktop/AnnoyODroid/sample/build/intermediates/exploded-aar/AnnoyODroid/library/unspecified/AndroidManifest.xml:11:14-49

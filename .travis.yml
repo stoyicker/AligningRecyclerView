@@ -1,0 +1,26 @@
+language: android
+# Enable container-based infrastructure ##START##
+sudo: false
+# Enable container-based infrastructure ##END##
+android:
+  components:
+    - build-tools-23.0.0
+    - android-23
+    - extra-android-m2repository
+    - extra-google-m2repository
+jdk:
+  - oraclejdk8
+branches:
+  only:
+    - master
+before_install:
+# Signature stub ##START##
+    - echo "stub keystore" > annoyodroid.keystore
+    - echo "stub storage pwd" > annoyodroid.pwd
+    - echo "stub key pwd" > annoyodroid.pwd
+# Signature stub ##END##
+# Mark Gradle as executable ##START##
+    - chmod +x ./gradlew
+# Mark Gradle as executable ##END##
+script:
+    - ./gradlew clean build connectedCheck

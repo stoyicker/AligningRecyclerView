@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.stoyicker.annoyodroid"
+    package="com.mdi.android"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,9 +8,6 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="23" />
 
-    <application
-        android:allowBackup="true"
-        android:label="@string/library_name" >
-    </application>
+    <library android:name="@string/library_name" />
 
 </manifest>
