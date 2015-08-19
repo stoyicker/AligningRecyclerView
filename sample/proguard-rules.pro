@@ -1,0 +1,2 @@
+-include proguard-gson.pro
+-include proguard-common.pro
