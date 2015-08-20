@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "io.github.stoyicker.annoyodroid.sample"
-        minSdkVersion 7
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -26,9 +26,21 @@ android {
             zipAlignEnabled false
         }
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:percent:23.0.0'
+
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'io.reactivex:rxandroid:1.0.1'
+
     compile project(':library')
 }

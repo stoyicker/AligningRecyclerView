@@ -6,6 +6,6 @@ AnnoyODroid
 
 Hearthstone API wrapper for Android. Free to use (CC BY 4.0).
 
-Compatible with API 8 and higher.
+Compatible with API 1 and higher.
 
 Pull requests are welcome.

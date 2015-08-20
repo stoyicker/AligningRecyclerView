@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">AnnoyODroid sample</string>
+    <string name="sync_request">Synchronous</string>
+    <string name="async_request">Asynchronous (Retrofit callback)</string>
+    <string name="rxandroid_request">Asyncronous (RxAndroid)</string>
 </resources>
