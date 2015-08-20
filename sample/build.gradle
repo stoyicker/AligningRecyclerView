@@ -5,8 +5,8 @@ android {
     buildToolsVersion "23.0.0"
 
     defaultConfig {
-        applicationId "io.github.stoyicker.annoyodroid"
-        minSdkVersion 8
+        applicationId "io.github.stoyicker.annoyodroid.sample"
+        minSdkVersion 7
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
