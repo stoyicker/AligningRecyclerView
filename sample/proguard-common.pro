@@ -1,4 +1,4 @@
-##---------------Begin: proguard configuration common for all Android apps ----------
+##---------------Begin: proguard configuration common for all Android apps----------
 -optimizationpasses 5
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
@@ -68,4 +68,4 @@
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
 }
-##---------------End: proguard configuration common for all Android apps ----------
+##---------------End: proguard configuration common for all Android apps----------
