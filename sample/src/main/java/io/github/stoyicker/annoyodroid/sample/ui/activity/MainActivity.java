@@ -81,8 +81,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setResponseVisibility(final boolean b) {
-        mProgressBar.setVisibility(b ? View.INVISIBLE : View.VISIBLE);
-        mResponseField.setVisibility(b ? View.VISIBLE : View.INVISIBLE);
+        mProgressBar.post(new BooleanParameterRunnable() {
+            @Override
+            public void run() {
+                mProgressBar.setVisibility(mBoolean ? View.INVISIBLE : View.VISIBLE);
+            }
+        }.init(b));
+        mResponseField.post(new BooleanParameterRunnable() {
+            @Override
+            public void run() {
+                mResponseField.setVisibility(mBoolean ? View.VISIBLE : View.INVISIBLE);
+            }
+        }.init(b));
+    }
+
+    private static abstract class BooleanParameterRunnable implements Runnable {
+
+        boolean mBoolean;
+
+        BooleanParameterRunnable init(boolean b) {
+            this.mBoolean = b;
+            return this;
+        }
+
+        @Override
+        public abstract void run();
     }
 
     @OnClick(R.id.button_sync)
@@ -99,10 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected Object doInBackground(final Void... params) {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException ignored) {
-                }
                 switch (mPosition) {
                     default:
 //                throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
@@ -154,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnItemSelected(R.id.spinner_methods)
     void updateEnabledButtons(final int position) {
+        //Remember to use post
         switch (position) {
             default:
                 throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
