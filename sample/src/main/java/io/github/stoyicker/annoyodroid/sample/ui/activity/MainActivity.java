@@ -30,9 +30,11 @@ import rx.schedulers.Schedulers;
  */
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.view_response)
     TextView mResponseField;
 
+    @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.spinner_methods)
     Spinner mMethodSpinner;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.button_async)
     Button mButtonASync;
 
+    @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.progress_bar)
     View mProgressBar;
 
