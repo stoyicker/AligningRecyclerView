@@ -10,6 +10,6 @@ AnnoyODroid isn’t endorsed by Blizzard Entertainment and doesn’t reflect the
 
 Hearthstone API wrapper for Android. Free to use (CC BY 4.0).
 
-Compatible with API 9 and higher.
+Compatible with API 9 and higher through synchronous calls, plain Retrofit callbacks and RxAndroid.
 
 Pull requests are welcome.
