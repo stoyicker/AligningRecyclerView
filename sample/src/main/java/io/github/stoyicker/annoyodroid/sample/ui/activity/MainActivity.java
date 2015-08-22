@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.button_async)
     void requestAsync() {
         setResponseVisibility(false);
-        //You'll have to instatiate it in the switch statement
+        //You'll have to instantiate it in the switch statement
         final Callback<Object> genericCallback = new Callback<Object>() {
 
             @Override
@@ -142,15 +142,15 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.button_rxandroid)
     void requestRx() {
         setResponseVisibility(false);
-        //You'll have to instatiate in the switch statement
-        Observable<Object> genericCallback = null;
+        //You'll have to instantiate in the switch statement
+        Observable<Object> observableResponse = null;
         final int position;
 
         switch (position = mMethodSpinner.getSelectedItemPosition()) {
             default:
 //                throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
         }
-        Observable.just(null)
+        Observable.just(observableResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.immediate())
                 .subscribe(new Observer<Object>() {
