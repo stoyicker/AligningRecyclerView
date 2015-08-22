@@ -13,6 +13,6 @@ AnnoyODroid isn’t endorsed by Blizzard Entertainment and doesn’t reflect the
 
 Hearthstone API wrapper for Android. Free to use (CC BY 4.0).
 
-Compatible with API 9 and higher through synchronous calls, plain Retrofit callbacks and RxAndroid.
+Compatible with API 9 and higher through synchronous calls, plain Retrofit [callbacks](http://square.github.io/retrofit/javadoc/retrofit/Callback.html "Retrofit Javadoc") and RxJava [observables](http://reactivex.io/documentation/observable.html "ReactiveX Documentation").
 
 Pull requests are welcome. See the [guidelines for contributing](https://github.com/Stoyicker/AnnoyODroid/blob/master/CONTRIBUTING.md "CONTRIBUTING.md").
