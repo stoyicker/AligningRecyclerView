@@ -42,5 +42,5 @@ dependencies {
 
     compile 'io.reactivex:rxandroid:1.0.1'
 
-    compile project(':library')
+    compile project(':annoyodroid')
 }

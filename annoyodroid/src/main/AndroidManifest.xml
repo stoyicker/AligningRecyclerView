@@ -1,5 +1,5 @@
 <manifest
-    package="io.github.stoyicker.annoyodroid"
+    package="annoyodroid"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <library android:name="@string/library_name"/>
