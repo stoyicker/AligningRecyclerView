@@ -13,5 +13,7 @@ Bugs and feedback
 Issuing pull requests
 ---------------------
 1. Fork the repository.
-2. work your changes.
-2. Issue PRs **against develop only**.
+2. Work your changes.
+3. Issue PRs **against develop only**.
+
+Note that you need to have signed the [Individual Contributor License Agreement (online)](https://docs.google.com/forms/d/1x9Dca8AKSxM4I_oZCLr3KJLfnfIJrZrBn17OvUcZjlQ/viewform "Individual Contributor License Agreement") to get your code merged. This is required only once.
