@@ -4,6 +4,9 @@ AnnoyODroid
 
 master [![!](https://magnum.travis-ci.com/Stoyicker/AnnoyODroid.svg?branch=master&token=FQiyriPMi5DyTTCWNBup)](https://magnum.travis-ci.com/Stoyicker/AnnoyODroid.svg?branch=master&token=FQiyriPMi5DyTTCWNBup)
 ------
+[![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=gradle)](https://jitpack.io/#jitpack/gradle-simple)
+[![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=maven)](https://jitpack.io/#jitpack/gradle-simple)
+
 **Legal notice: See [LICENSE](https://raw.githubusercontent.com/Stoyicker/AnnoyODroid/master/LICENSE "LICENSE")**
 
 **Open source licenses: See [THIRD_PARTY.md (common)](https://github.com/Stoyicker/AnnoyODroid/blob/master/sample/THIRD_PARTY.md "THIRD_PARTY.md (common)"), [THIRD_PARTY.md (sample)](https://raw.githubusercontent
