@@ -9,7 +9,7 @@ master [![!](https://magnum.travis-ci.com/Stoyicker/AnnoyODroid.svg?branch=maste
 [![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=gradle)](https://jitpack.io/#jitpack/gradle-simple)
 [![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=maven)](https://jitpack.io/#jitpack/gradle-simple)
 
-Usage
+Download
 ------
 **Gradle**
 ```groovy
