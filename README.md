@@ -1,6 +1,6 @@
 AnnoyODroid
 ===========
-[Would you like to have your app show up here?](https://github.com/Stoyicker/AnnoyODroid/issues/new?body=Please%20add%20the%20highlight-request%20label%20to%20this%20issue%20and%20assign%20it%20to%20Stoyicker.%0A%0ALink:%20{Link%20to%20(one%20of,%20in%20order%20of%20preference)%20Google%20Play,%20Amazon%20Appstore%20for%20Android,%20F-Droid,%20Aptoide,%20source%20code%3E}%20%0AImage:%20{Link%20to%20a%20512x512%20PNG%20image%20representing%20your%20app}&title=App%20highlight%20request:%20{your_app_name} "Open an issue!")
+[Would you like to have your app show up here?](https://github.com/Stoyicker/AnnoyODroid/issues/new?body=Please%20add%20the%20highlight-request%20label%20to%20this%20issue%20and%20assign%20it%20to%20Stoyicker.%0A%0ALink:%20{Link%20to%20(one%20of,%20in%20order%20of%20preference)%20Google%20Play,%20Amazon%20Appstore%20for%20Android,%20F-Droid,%20Aptoide,%20source%20code%3E}%20%0AImage:%20{Link%20to%20a%20512x512%20PNG%20image%20representing%20your%20app}&title=App%20highlight%20request:%20{your_app_name} "Request app highlight issue template")
 
 master [![!](https://travis-ci.org/Stoyicker/AnnoyODroid.svg?branch=master)](https://travis-ci.org/Stoyicker/AnnoyODroid)
 ------
@@ -15,4 +15,4 @@ Hearthstone API wrapper for Android. Free to use (CC BY 4.0).
 
 Compatible with API 9 and higher through synchronous calls, plain Retrofit callbacks and RxAndroid.
 
-Pull requests are welcome.
+Pull requests are welcome. See the [guidelines for contributing](https://raw.githubusercontent.com/Stoyicker/AnnoyODroid/master/CONTRIBUTING.md "CONTRIBUTING.md").
