@@ -31,6 +31,9 @@ import rx.schedulers.Schedulers;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private static final String IF_TRAVIS = "true";
+    private static final String CI_KEY = "CI";
+
     @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.view_response)
     TextView mResponseField;
@@ -69,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         mApiKeyView.post(new Runnable() {
             @Override
             public void run() {
-                mApiKeyView.setText(mSharedPreferences.getString(getString(R
-                        .string.pref_key_api_key), ""));
+                final String key = getString(R.string.pref_key_api_key);
+                mApiKeyView.setText(onCi() ? System.getenv(key) : mSharedPreferences.getString(key, ""));
             }
         });
     }
@@ -203,9 +206,11 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.button_rxjava, R.id.button_async, R.id.button_sync})
     void updateApiKeyPref() {
-        mSharedPreferences.edit().putString(getString(R.string.pref_key_api_key), mApiKeyView
-                .getText().toString())
-                .apply();
+        if (!onCi()) {
+            mSharedPreferences.edit().putString(getString(R.string.pref_key_api_key), mApiKeyView
+                    .getText().toString())
+                    .apply();
+        }
     }
 
     private void setText(final String text) {
@@ -223,5 +228,11 @@ public class MainActivity extends AppCompatActivity {
                 mResponseField.setText(mText);
             }
         }.init(text));
+    }
+
+    private static boolean onCi() {
+        final String env = System.getenv
+                (CI_KEY);
+        return env != null && env.contentEquals(IF_TRAVIS);
     }
 }
