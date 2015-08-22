@@ -22,7 +22,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import rx.Observable;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Observable.just(null)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.immediate())
                 .subscribe(new Observer<Object>() {
                     @Override
                     public void onCompleted() {
