@@ -1,5 +1,7 @@
-package io.github.stoyicker.annoyodroid.sample.ui.activity;
+package annoyodroid.sample.ui.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,11 +14,11 @@ import android.widget.TextView;
 
 import java.util.concurrent.Executors;
 
+import annoyodroid.sample.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
-import io.github.stoyicker.annoyodroid.sample.R;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -37,15 +39,23 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.spinner_methods)
     Spinner mMethodSpinner;
 
+    @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.button_sync)
     Button mButtonSync;
 
+    @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.button_async)
     Button mButtonASync;
 
     @SuppressWarnings("WeakerAccess") //Butterknife
     @Bind(R.id.progress_bar)
     View mProgressBar;
+
+    @SuppressWarnings("WeakerAccess") //Butterknife
+    @Bind(R.id.edit_text_api_key)
+    TextView mApiKeyView;
+
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -54,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mResponseField.setMovementMethod(new ScrollingMovementMethod());
+        mSharedPreferences = getSharedPreferences(getPackageName(),
+                Context.MODE_PRIVATE);
+        mApiKeyView.post(new Runnable() {
+            @Override
+            public void run() {
+                mApiKeyView.setText(mSharedPreferences.getString(getString(R
+                        .string.pref_key_api_key), ""));
+            }
+        });
     }
 
     @OnClick(R.id.button_async)
@@ -139,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         }.init(mMethodSpinner.getSelectedItemPosition()).executeOnExecutor(Executors.newSingleThreadExecutor());
     }
 
-    @OnClick(R.id.button_rxandroid)
+    @OnClick(R.id.button_rxjava)
     void requestRx() {
         setResponseVisibility(false);
         //You'll have to instantiate in the switch statement
@@ -180,6 +199,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
         }
+    }
+
+    @OnClick({R.id.button_rxjava, R.id.button_async, R.id.button_sync})
+    void updateApiKeyPref() {
+        mSharedPreferences.edit().putString(getString(R.string.pref_key_api_key), mApiKeyView
+                .getText().toString())
+                .apply();
     }
 
     private void setText(final String text) {

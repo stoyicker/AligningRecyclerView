@@ -1,5 +1,5 @@
 <manifest
-    package="io.github.stoyicker.annoyodroid.sample"
+    package="annoyodroid.sample"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
