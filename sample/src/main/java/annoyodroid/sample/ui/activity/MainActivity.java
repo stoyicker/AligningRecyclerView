@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import rx.Observable;
 import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_async)
     void requestAsync() {
-        setResponseVisibility(false);
         //You'll have to instantiate it in the switch statement
         final Callback<Object> genericCallback = new Callback<Object>() {
 
@@ -94,13 +95,14 @@ public class MainActivity extends AppCompatActivity {
             public void failure(final RetrofitError error) {
                 final Response response = error.getResponse();
                 MainActivity.this.setText(response.getStatus() + ":" + response.getReason());
+                MainActivity.this.setResponseVisibility(true);
             }
         };
         final int position;
 
         switch (position = mMethodSpinner.getSelectedItemPosition()) {
-            default:
-                throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
+//            default:
+//                throw new IllegalArgumentException("Position " + position + " not properly aligned with a method");
         }
     }
 
@@ -134,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_sync)
     void requestSync() {
-        setResponseVisibility(false);
         new AsyncTask<Void, Void, Object>() {
 
             private int mPosition;
@@ -163,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_rxjava)
     void requestRx() {
-        setResponseVisibility(false);
         //You'll have to instantiate in the switch statement
         Observable<Object> observableResponse = null;
         final int position;
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Observable.just(observableResponse)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.immediate())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Object>() {
                     @Override
                     public void onCompleted() {
@@ -196,7 +196,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnItemSelected(R.id.spinner_methods)
-    void updateEnabledButtons(final int position) {
+    void onItemSelected(final int position) {
+        onAllCommonClick();
         //Remember to use post
         switch (position) {
             default:
@@ -205,12 +206,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.button_rxjava, R.id.button_async, R.id.button_sync})
-    void updateApiKeyPref() {
+    void onAllCommonClick() {
+        mApiKeyView.post(new Runnable() {
+            @Override
+            public void run() {
+                final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mApiKeyView.getWindowToken(), 0);
+                mApiKeyView.clearFocus();
+            }
+        });
         if (!onCi()) {
-            mSharedPreferences.edit().putString(getString(R.string.pref_key_api_key), mApiKeyView
-                    .getText().toString())
-                    .apply();
+            mSharedPreferences.edit().putString(getString(R.string.pref_key_api_key), mApiKeyView.getText().toString()).apply();
         }
+    }
+
+    @OnClick({R.id.button_rxjava, R.id.button_async, R.id.button_sync})
+    void onRequestCommonClick() {
+        setResponseVisibility(false);
     }
 
     private void setText(final String text) {
