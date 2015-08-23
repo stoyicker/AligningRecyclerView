@@ -15,6 +15,6 @@ before_install:
 # Mark Gradle as executable ##END##
     - sudo pip install codecov
 script:
-    - ./gradlew clean build connectedCheck
+    - ./gradlew clean build test
 after_success:
     - codecov
