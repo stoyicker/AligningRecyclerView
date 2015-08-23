@@ -19,8 +19,5 @@ before_install:
     - echo "stub storage pwd" > annoyodroid.pwd
     - echo "stub key pwd" > annoyodroid.pwd
 # Signature stub ##END##
-# Mark Gradle as executable ##START##
-    - chmod +x ./gradlew
-# Mark Gradle as executable ##END##
 script:
-    - ./gradlew clean build connectedCheck
+    - gradle clean build connectedCheck
