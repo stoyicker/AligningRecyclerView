@@ -12,3 +12,6 @@ mapping.txt
 seeds.txt
 unused.txt
 infer-out
+gradle
+gradlew
+gradlew.bat
