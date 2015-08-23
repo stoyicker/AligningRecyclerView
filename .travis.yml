@@ -1,0 +1,20 @@
+language: android
+sudo: required
+android:
+  components:
+    - build-tools-23.0.0
+    - android-23
+jdk:
+  - oraclejdk8
+branches:
+  only:
+    - master
+before_install:
+# Mark Gradle as executable ##START##
+    - chmod +x gradlew
+# Mark Gradle as executable ##END##
+    - sudo pip install codecov
+script:
+    - ./gradlew clean build connectedCheck
+after_success:
+    - codecov
