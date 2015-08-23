@@ -9,8 +9,10 @@ master [![!](https://magnum.travis-ci.com/Stoyicker/AnnoyODroid.svg?branch=maste
 [![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=gradle)](https://jitpack.io/#jitpack/gradle-simple)
 [![Release](https://img.shields.io/github/release/stoyicker/annoyodroid.svg?label=maven)](https://jitpack.io/#jitpack/gradle-simple)
 
+**Legal notice: See [LICENSE](https://raw.githubusercontent.com/Stoyicker/AnnoyODroid/master/LICENSE "LICENSE")**
+
 Download
-------
+--------
 **Gradle**
 ```groovy
 compile 'com.github.stoyicker:annoyodroid:(insert latest version)'
@@ -24,12 +26,13 @@ compile 'com.github.stoyicker:annoyodroid:(insert latest version)'
 </dependency>
 ```
 
-**Legal notice: See [LICENSE](https://raw.githubusercontent.com/Stoyicker/AnnoyODroid/master/LICENSE "LICENSE")**
+Sample app
+----------
+See the sample app [in its own repository](https://github.com/Stoyicker/AnnoyODroid-sample "AnnoyODroid-sample").
 
-**Open source licenses: See [THIRD_PARTY.md (common)](https://github.com/Stoyicker/AnnoyODroid/blob/master/sample/THIRD_PARTY.md "THIRD_PARTY.md (common)"), [THIRD_PARTY.md (sample)](https://raw.githubusercontent
-.com/Stoyicker/AnnoyODroid/master/sample/THIRD_PARTY.md "THIRD_PARTY.md (sample)") and [THIRD_PARTY.md (library)](https://github.com/Stoyicker/AnnoyODroid/blob/master/library/THIRD_PARTY.md "THIRD_PARTY.md (library)")**
+**Open source licenses: See [THIRD_PARTY.md](https://github.com/Stoyicker/AnnoyODroid/blob/master/THIRD_PARTY.md "THIRD_PARTY.md")**
 
-AnnoyODroid isn’t endorsed by Blizzard Entertainment and doesn’t reflect the views or opinions of Blizzard Entertainment or anyone officially involved in producing or managing Hearthstone. Hearthstone and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entrtainment, Inc. Hearthstone © Blizzard Entertainment, Inc.
+AnnoyODroid isn’t endorsed by Blizzard Entertainment and does not reflect the views or opinions of Blizzard Entertainment or anyone officially involved in producing or managing Hearthstone. Hearthstone and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. Hearthstone © Blizzard Entertainment, Inc.
 
 Hearthstone API wrapper for Android. Free to use (CC BY 4.0).
 
