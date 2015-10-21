@@ -1,0 +1,114 @@
+/*
+ * AnnoyODroid (c) by Jorge Antonio Diaz-Benito Soriano
+ *
+ * AnnoyODroid is licensed under a Creative Commons Attribution 4.0 International License.
+ *
+ * You should have received a copy of the license along with this work. If not, see http://creativecommons.org/licenses/by/4.0/.
+ */
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  //noinspection GroovyAssignabilityCheck
+  dependencies {
+    def classpathDependencies = rootProject.ext.classpathDependencies
+
+    //noinspection GroovyAssignabilityCheck
+    classpath classpathDependencies.gradleVersions
+    //noinspection GroovyAssignabilityCheck
+    classpath classpathDependencies.jsonSchema2Pojo
+    //noinspection GroovyAssignabilityCheck
+    classpath classpathDependencies.coveralls
+  }
+}
+
+//apply from: "model/generate.gradle"
+apply plugin: 'java'
+
+tasks.withType(JavaCompile) {
+  sourceCompatibility = "1.7"
+  targetCompatibility = "1.7"
+  options.bootClasspath = System.getenv("JAVA_HOME") + "/jre/lib/rt.jar"
+}
+
+apply plugin: 'com.github.ben-manes.versions'
+
+apply plugin: "jacoco"
+apply plugin: 'com.github.kt3k.coveralls'
+
+jacoco {
+  toolVersion rootProject.ext.jacocoVersion
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled = true // coveralls plugin depends on xml format report
+    html.enabled = true
+  }
+  afterEvaluate {
+    classDirectories = files(classDirectories.files.collect {
+      fileTree(dir: it, exclude: [
+        '**/R.java',
+        '**/BuildConfig.java'
+      ])
+    })
+  }
+}
+
+apply plugin: 'maven'
+
+group = 'com.github.stoyicker'
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  //noinspection GroovyAssignabilityCheck
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives sourcesJar
+  archives javadocJar
+}
+
+install {
+  repositories.mavenInstaller {
+    pom.project {
+      licenses {
+        license {
+          //noinspection GroovyAssignabilityCheck
+          name 'Creative Commons Attribution 4.0 International'
+          url 'https://creativecommons.org/licenses/by/4.0/legalcode'
+          distribution 'repo'
+        }
+      }
+    }
+  }
+}
+
+dependencies {
+  def runDependencies = rootProject.ext.runDependencies
+  def testDependencies = rootProject.ext.testDependencies
+
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.commonsLang
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.retrofitGsonConverter
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.retrofit
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.retrofitRxJavaAdapter
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.javaXValidationApi
+  //noinspection GroovyAssignabilityCheck
+  compile runDependencies.glassfishAnnotations
+
+  //noinspection GroovyAssignabilityCheck
+  testCompile testDependencies.jUnit4
+}

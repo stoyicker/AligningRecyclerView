@@ -1,0 +1,55 @@
+/*
+ * AnnoyODroid (c) by Jorge Antonio Diaz-Benito Soriano
+ *
+ * AnnoyODroid is licensed under a Creative Commons Attribution 4.0 International License.
+ *
+ * You should have received a copy of the license along with this work. If not, see http://creativecommons.org/licenses/by/4.0/.
+ */
+
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Classpath
+    jsonSchema2PojoVersion = "0.4.15"
+    gradleVersionsVersion = "0.11.3"
+    coverallsVersion = "2.4.0"
+
+    //Libraries
+    javaXValidationApiVersion = "1.1.0.Final"
+    glassfishAnnotationVersion = "10.0-b28"
+    commonsLangVersion = "3.4"
+    retrofitVersion = "2.0.0-beta2"
+    retrofitGsonConverterVersion = "2.0.0-beta2"
+    retrofitRxJavaAdapterVersion = "2.0.0-beta2"
+
+    //Testing
+    jacocoVersion = "0.7.5.201505241946"
+    jUnit4Version = "4.12"
+
+    classpathDependencies = [
+            jsonSchema2Pojo: "org" +
+                    ".jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoVersion}",
+            gradleVersions : "com.github.ben-manes:gradle-versions-plugin:${gradleVersionsVersion}",
+            coveralls      : "org.kt3k.gradle.plugin:coveralls-gradle-plugin:${coverallsVersion}"
+    ]
+
+    runDependencies = [
+            javaXValidationApi    : "javax.validation:validation-api:${javaXValidationApiVersion}",
+            glassfishAnnotations  : "org.glassfish:javax.annotation:${glassfishAnnotationVersion}",
+            commonsLang           : "org.apache.commons:commons-lang3:${commonsLangVersion}",
+            retrofit              : "com.squareup.retrofit:retrofit:${retrofitVersion}",
+            retrofitGsonConverter : "com.squareup" +
+                    ".retrofit:converter-gson:${retrofitGsonConverterVersion}",
+            retrofitRxJavaAdapter : "com.squareup" +
+                    ".retrofit:adapter-rxjava:${retrofitRxJavaAdapterVersion}"
+    ]
+
+    testDependencies = [
+            jUnit4 : "junit:junit:${jUnit4Version}"
+    ]
+}

@@ -1,0 +1,14 @@
+language: java
+sudo: false ## Enable container-based infrastructure
+jdk:
+  - oraclejdk8
+branches:
+  only:
+    - master
+before_install:
+    - chmod +x gradlew
+    - chmod +x scripts/do.sh
+script:
+    - ./scripts/do.sh
+after_success:
+    - ./gradlew jacocoTestReport coveralls

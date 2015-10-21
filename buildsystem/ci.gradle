@@ -1,0 +1,20 @@
+/*
+ * AnnoyODroid (c) by Jorge Antonio Diaz-Benito Soriano
+ *
+ * AnnoyODroid is licensed under a Creative Commons Attribution 4.0 International License.
+ *
+ * You should have received a copy of the license along with this work. If not, see http://creativecommons.org/licenses/by/4.0/.
+ */
+
+
+def ciServer = 'TRAVIS'
+def executingOnCI = "true".equals(System.getenv(ciServer))
+
+subprojects {
+    project.plugins.whenPluginAdded { plugin ->
+        if ('com.android.build.gradle.AppPlugin'.equals(plugin.class.name) ||
+                'com.android.build.gradle.LibraryPlugin'.equals(plugin.class.name)) {
+            project.android.dexOptions.preDexLibraries = !executingOnCI
+        }
+    }
+}
