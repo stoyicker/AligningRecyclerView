@@ -14,5 +14,3 @@ before_install:
     - chmod +x scripts/do.sh
 script:
     - ./scripts/do.sh
-after_script:
-    - cat /home/travis/build/stoyicker/AligningRecyclerView/library/build/outputs/lint-results.html
