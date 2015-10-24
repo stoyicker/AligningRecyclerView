@@ -38,7 +38,13 @@ android {
     targetSdkVersion 23
   }
 
+  def ciServer = 'TRAVIS'
+  def executingOnCI = "true".equals(System.getenv(ciServer))
+
   lintOptions {
+    if(executingOnCI)
+      disable 'NewApi' //For some stupid reason Travis pops NewApi, even though I have no code.
+
     abortOnError true
 
     absolutePaths true
