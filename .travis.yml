@@ -15,4 +15,4 @@ before_install:
 script:
     - ./scripts/do.sh
 after_script:
-    - echo file:///home/travis/build/stoyicker/AligningRecyclerView/library/build/outputs/lint-results.html
+    - cat file:///home/travis/build/stoyicker/AligningRecyclerView/library/build/outputs/lint-results.html
