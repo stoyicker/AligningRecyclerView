@@ -6,56 +6,6 @@
  * You should have received a copy of the license along with this work. If not, see http://creativecommons.org/licenses/by/4.0/.
  */
 
-buildscript {
-  repositories {
-    jcenter()
-  }
-
-  //noinspection GroovyAssignabilityCheck
-  dependencies {
-    def classpathDependencies = rootProject.ext.classpathDependencies
-
-    //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.gradleVersions
-    //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.jsonSchema2Pojo
-    //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.gradlePlugin
-    //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.mavenGradlePlugin
-  }
-}
-
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'com.android.library'
-
-android {
-  compileSdkVersion 23
-  buildToolsVersion "23.0.1"
-
-  defaultConfig {
-    versionCode 1
-    versionName "0"
-    minSdkVersion 7
-    targetSdkVersion 23
-  }
-
-  lintOptions {
-    abortOnError true
-
-    absolutePaths true
-
-    warningsAsErrors true
-
-    enable 'LogConditional', 'NewerVersionAvailable', 'TypographyQuotes'
-  }
-
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
-}
-
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'maven'
 
@@ -97,7 +47,4 @@ install {
       }
     }
   }
-}
-
-dependencies {
 }
