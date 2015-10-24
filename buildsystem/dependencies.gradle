@@ -15,16 +15,13 @@ allprojects {
 
 ext {
   //Classpath
-  jsonSchema2PojoVersion = "0.4.15"
   gradleVersionsVersion = "0.11.3"
-  gradlePluginVersion = "1.3.1"
-  mavenGradlePluginVersion = "1.3"
+  gradleAndroidVersion = "1.4.0-beta6"
+  mavenGradleAndroidVersion = "1.3"
 
   classpathDependencies = [
-    jsonSchema2Pojo  : "org" +
-      ".jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoVersion}",
     gradleVersions   : "com.github.ben-manes:gradle-versions-plugin:${gradleVersionsVersion}",
-    gradlePlugin     : "com.android.tools.build:gradle:${gradlePluginVersion}",
-    mavenGradlePlugin: "com.github.dcendents:android-maven-gradle-plugin:${mavenGradlePluginVersion}"
+    gradleAndroid     : "com.android.tools.build:gradle:${gradleAndroidVersion}",
+    mavenGradleAndroid: "com.github.dcendents:android-maven-gradle-plugin:${mavenGradleAndroidVersion}"
   ]
 }

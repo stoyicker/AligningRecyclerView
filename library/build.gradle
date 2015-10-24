@@ -18,11 +18,9 @@ buildscript {
     //noinspection GroovyAssignabilityCheck
     classpath classpathDependencies.gradleVersions
     //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.jsonSchema2Pojo
+    classpath classpathDependencies.gradleAndroid
     //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.gradlePlugin
-    //noinspection GroovyAssignabilityCheck
-    classpath classpathDependencies.mavenGradlePlugin
+    classpath classpathDependencies.mavenGradleAndroid
   }
 }
 
