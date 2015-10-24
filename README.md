@@ -1,6 +1,6 @@
 AligningRecyclerView
 ====================
-master [![Build Status](https://travis-ci.org/stoyicker/AligningRecyclerView.svg?branch=master)](https://travis-ci.org/stoyicker/AligningRecyclerView) [![Codacy Badge](https://api.codacy.com/project/badge/60b723db12984e399e31b97b4a9146b6)](https://www.codacy.com/app/jorge-diazbenitosoriano/AligningRecyclerView)
+master [![Build Status](https://travis-ci.org/stoyicker/AligningRecyclerView.svg?branch=master)](https://travis-ci.org/stoyicker/AligningRecyclerView)
 ------
 
 Download
