@@ -5,7 +5,7 @@
  *
  * You should have received a copy of the license along with this work. If not, see http://creativecommons.org/licenses/by/4.0/.
  */
-def gradleVersion = '2.8-rc-2'
+def gradleVersion = '2.8'
 
 task wrapper(type: Wrapper) {
   distributionUrl = "https\\://services.gradle.org/distributions/gradle-${gradleVersion}-all" +
