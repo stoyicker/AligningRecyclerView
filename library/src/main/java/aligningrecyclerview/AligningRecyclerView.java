@@ -15,8 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 /**
- * A {@link RecyclerView} that can synchronize its scrolling after one or more other {@link
- * RecyclerView}s.
+ * A RecyclerView that can synchronize its scrolling after one or more other RecyclerViews.
  */
 public class AligningRecyclerView extends RecyclerView {
 
@@ -51,10 +50,10 @@ public class AligningRecyclerView extends RecyclerView {
   }
 
   /**
-   * Binds this {@link AligningRecyclerView} to a {@link RecyclerView}. This is an unidirectional binding, meaning that calling this method implies that scrolling {@code target} will cause this {@link AligningRecyclerView} to scroll.
+   * Binds this AligningRecyclerView to a RecyclerView. This is an unidirectional binding, meaning that calling this method implies that scrolling {@code target} will cause this AligningRecyclerView to scroll.
    * Calling this method does not modify the behavior of the symmetric binding, if any.
    *
-   * @param target {@link RecyclerView} The target to bind to.
+   * @param target RecyclerView The target to bind to.
    * @return The success of the operation. Usually the operation would fail if {@code target} is the
    * own
    * object or the binding already exists.
@@ -67,12 +66,12 @@ public class AligningRecyclerView extends RecyclerView {
   }
 
   /**
-   * Unbinds this {@link AligningRecyclerView} from a {@link RecyclerView}. This is an
+   * Unbinds this AligningRecyclerView from a RecyclerView. This is an
    * unidirectional unbinding, meaning that calling this method implies that scrolling {@code
-   * target} will no longer cause this {@link AligningRecyclerView} to scroll.
+   * target} will no longer cause this AligningRecyclerView to scroll.
    * Calling this method does not modify the behavior of the symmetric binding, if any.
    *
-   * @param target {@link RecyclerView} The target to unbind from.
+   * @param target RecyclerView The target to unbind from.
    * @return The success of the operation. Usually the operation would fail if {@code target} is the
    * own object or the binding does not already exists.
    */
@@ -84,12 +83,12 @@ public class AligningRecyclerView extends RecyclerView {
   }
 
   /**
-   * Verifies is this {@link AligningRecyclerView} is bound to the given {@link RecyclerView}.
+   * Verifies is this AligningRecyclerView is bound to the given RecyclerView.
    *
-   * @param target {@link RecyclerView} The target towards which the existence of the binding
+   * @param target RecyclerView The target towards which the existence of the binding
    *               shall be verified.
-   * @return <value>true</value> if there is a binding from this object towards {@code target};
-   * <value>false</value> otherwise.
+   * @return {@code true} if there is a binding from this object towards {@code target};
+   * {@code false} otherwise.
    */
   public boolean isBoundTo(final @NonNull RecyclerView target) {
     throw new UnsupportedOperationException("Not yet implemented");

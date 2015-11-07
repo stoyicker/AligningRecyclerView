@@ -69,10 +69,15 @@ task sourcesJar(type: Jar) {
   classifier = 'sources'
 }
 
+configurations {
+  javadocCompile
+}
+
 task javadoc(type: Javadoc) {
   source = android.sourceSets.main.java.sourceFiles
   //noinspection GroovyAssignabilityCheck
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  classpath += configurations.javadocCompile
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -104,4 +109,6 @@ install {
 dependencies {
   //noinspection GroovyAssignabilityCheck
   provided providedDependencies.recyclerView
+  //noinspection GroovyAssignabilityCheck
+  javadocCompile javadocDependencies.supportAnnotations
 }

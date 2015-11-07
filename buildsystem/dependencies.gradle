@@ -16,17 +16,22 @@ allprojects {
 ext {
   //Classpath
   gradleVersionsVersion = "0.11.3"
-  gradleAndroidVersion = "1.4.0-beta6"
+  gradleAndroidVersion = "1.5.0-beta2"
   mavenGradleAndroidVersion = "1.3"
-  recyclerViewVersion = "23.0.1"
+  recyclerViewVersion = "23.1.0"
+  supportAnnotationsVersion = "23.1.0"
 
   classpathDependencies = [
-    gradleVersions   : "com.github.ben-manes:gradle-versions-plugin:${gradleVersionsVersion}",
+    gradleVersions    : "com.github.ben-manes:gradle-versions-plugin:${gradleVersionsVersion}",
     gradleAndroid     : "com.android.tools.build:gradle:${gradleAndroidVersion}",
     mavenGradleAndroid: "com.github.dcendents:android-maven-gradle-plugin:${mavenGradleAndroidVersion}"
   ]
 
   providedDependencies = [
-    recyclerView : "com.android.support:recyclerview-v7:$recyclerViewVersion"
+    recyclerView: "com.android.support:recyclerview-v7:$recyclerViewVersion"
+  ]
+
+  javadocDependencies = [
+    supportAnnotations: "com.android.support:support-annotations:$supportAnnotationsVersion"
   ]
 }

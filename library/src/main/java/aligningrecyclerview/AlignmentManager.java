@@ -11,7 +11,7 @@ package aligningrecyclerview;
 import android.support.annotation.NonNull;
 
 /**
- * This is a general-purpose helper to mass-manage binding and unbinding operations in sets of {@link AligningRecyclerView} objects.
+ * This is a general-purpose helper to mass-manage binding and unbinding operations in sets of AligningRecyclerView objects.
  */
 public final class AlignmentManager {
 
@@ -20,9 +20,9 @@ public final class AlignmentManager {
   }
 
   /**
-   * Bi-directionally binds all the given {@link AligningRecyclerView} objects to each other.
+   * Bi-directionally binds all the given AligningRecyclerView objects to each other.
    *
-   * @param toJoin {@link AligningRecyclerView}[] The objects to bind.
+   * @param toJoin AligningRecyclerView[] The objects to bind.
    */
   public static void join(final @NonNull AligningRecyclerView... toJoin) {
     for (final AligningRecyclerView currentSrc : toJoin) {
@@ -35,9 +35,9 @@ public final class AlignmentManager {
   }
 
   /**
-   * Removes all bindings withing the given {@link AligningRecyclerView} objects.
+   * Removes all bindings withing the given AligningRecyclerView objects.
    *
-   * @param toDisjoin {@link AligningRecyclerView}[] The objects to unbind.
+   * @param toDisjoin AligningRecyclerView[] The objects to unbind.
    */
   public static void disjoin(final @NonNull AligningRecyclerView... toDisjoin) {
     for (final AligningRecyclerView currentSrc : toDisjoin) {
