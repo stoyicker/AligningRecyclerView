@@ -8,13 +8,15 @@
 
 package aligningrecyclerview;
 
+import android.support.annotation.NonNull;
+
 /**
  * This is a general-purpose helper to mass-manage binding and unbinding operations in sets of {@link AligningRecyclerView} objects.
  */
 public final class AlignmentManager {
 
-  private AlignmentManager() throws IllegalAccessException {
-    throw new IllegalAccessException("No instances.");
+  private AlignmentManager() {
+    throw new UnsupportedOperationException("No instances.");
   }
 
   /**
@@ -22,7 +24,14 @@ public final class AlignmentManager {
    *
    * @param toJoin {@link AligningRecyclerView}[] The objects to bind.
    */
-  public static void join(final AligningRecyclerView... toJoin) {
+  public static void join(final @NonNull AligningRecyclerView... toJoin) {
+    for (final AligningRecyclerView currentSrc : toJoin) {
+      for (final AligningRecyclerView currentTarget : toJoin) {
+        if (!currentSrc.equals(currentTarget)) {
+          currentSrc.bindTo(currentTarget);
+        }
+      }
+    }
   }
 
   /**
@@ -30,6 +39,13 @@ public final class AlignmentManager {
    *
    * @param toDisjoin {@link AligningRecyclerView}[] The objects to unbind.
    */
-  public static void disjoin(final AligningRecyclerView... toDisjoin) {
+  public static void disjoin(final @NonNull AligningRecyclerView... toDisjoin) {
+    for (final AligningRecyclerView currentSrc : toDisjoin) {
+      for (final AligningRecyclerView currentTarget : toDisjoin) {
+        if (!currentSrc.equals(currentTarget)) {
+          currentSrc.unbindFrom(currentTarget);
+        }
+      }
+    }
   }
 }
