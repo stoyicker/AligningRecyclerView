@@ -13,8 +13,6 @@ buildscript {
 
   //noinspection GroovyAssignabilityCheck
   dependencies {
-    def classpathDependencies = rootProject.ext.classpathDependencies
-
     //noinspection GroovyAssignabilityCheck
     classpath classpathDependencies.gradleVersions
     //noinspection GroovyAssignabilityCheck
@@ -29,7 +27,7 @@ apply plugin: 'com.android.library'
 
 android {
   compileSdkVersion 23
-  buildToolsVersion "23.0.1"
+  buildToolsVersion "23.0.2"
 
   defaultConfig {
     versionCode 1
@@ -42,7 +40,7 @@ android {
   def executingOnCI = "true".equals(System.getenv(ciServer))
 
   lintOptions {
-    if(executingOnCI)
+    if (executingOnCI)
       disable 'NewApi' //For some stupid reason Travis pops NewApi, even though I have no code.
 
     abortOnError true
@@ -104,4 +102,6 @@ install {
 }
 
 dependencies {
+  //noinspection GroovyAssignabilityCheck
+  provided providedDependencies.recyclerView
 }

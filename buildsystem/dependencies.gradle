@@ -18,10 +18,15 @@ ext {
   gradleVersionsVersion = "0.11.3"
   gradleAndroidVersion = "1.4.0-beta6"
   mavenGradleAndroidVersion = "1.3"
+  recyclerViewVersion = "23.0.1"
 
   classpathDependencies = [
     gradleVersions   : "com.github.ben-manes:gradle-versions-plugin:${gradleVersionsVersion}",
     gradleAndroid     : "com.android.tools.build:gradle:${gradleAndroidVersion}",
     mavenGradleAndroid: "com.github.dcendents:android-maven-gradle-plugin:${mavenGradleAndroidVersion}"
+  ]
+
+  providedDependencies = [
+    recyclerView : "com.android.support:recyclerview-v7:$recyclerViewVersion"
   ]
 }
