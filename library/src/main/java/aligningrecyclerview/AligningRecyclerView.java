@@ -23,13 +23,12 @@ import android.util.AttributeSet;
  */
 public class AligningRecyclerView extends RecyclerView {
 
-  private int mAlignmentOrientation = ALIGN_ORIENTATION_BOTH;
+  private int mAlignmentOrientation = ALIGN_ORIENTATION_VERTICAL;
 
   public static final int ALIGN_ORIENTATION_VERTICAL = 1,
-      ALIGN_ORIENTATION_HORIZONTAL = 2,
-      ALIGN_ORIENTATION_BOTH = 4;
+      ALIGN_ORIENTATION_HORIZONTAL = 2;
 
-  @IntDef(flag = true, value = {ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL, ALIGN_ORIENTATION_BOTH})
+  @IntDef(flag = true, value = {ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL})
   @interface AlignOrientation {
   }
 
@@ -89,7 +88,7 @@ public class AligningRecyclerView extends RecyclerView {
           0, 0);
 
       try {
-        mAlignmentOrientation = a.getInt(R.styleable.AligningRecyclerView_alignOrientation, ALIGN_ORIENTATION_BOTH);
+        mAlignmentOrientation = a.getInt(R.styleable.AligningRecyclerView_alignOrientation, ALIGN_ORIENTATION_VERTICAL);
       } finally {
         a.recycle();
       }
