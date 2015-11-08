@@ -12,6 +12,8 @@ import android.support.annotation.NonNull;
 
 /**
  * This is a general-purpose helper to mass-manage binding and unbinding operations in sets of AligningRecyclerView objects.
+ *
+ * @author Jorge Antonio Diaz-Benito Soriano (github.com/Stoyicker).
  */
 public final class AlignmentManager {
 
