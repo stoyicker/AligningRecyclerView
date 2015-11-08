@@ -28,10 +28,10 @@ ext {
   ]
 
   providedDependencies = [
-    recyclerView: "com.android.support:recyclerview-v7:$recyclerViewVersion"
+    recyclerView: "com.android.support:recyclerview-v7:${recyclerViewVersion}"
   ]
 
   javadocDependencies = [
-    supportAnnotations: "com.android.support:support-annotations:$supportAnnotationsVersion"
+    supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}"
   ]
 }
