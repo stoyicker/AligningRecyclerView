@@ -34,6 +34,13 @@ Compatible with API 7 and higher.
 
 Pull requests are welcome. See the [guidelines for contributing](https://github.com/Stoyicker/AligningRecyclerView/blob/master/CONTRIBUTING.md "CONTRIBUTING.md").
 
+Usage
+-----
+Just replace your RecyclerViews with AlignRecyclerViews and you're good to go! By default the
+scrolling will be synchronized both vertically and horizontally, but you can modify this
+behaviour using `AligningRecyclerView#setAlignOrientation(final @AlignOrientation int
+orientation)`. You can also set this attribute via a custom XML namespace using the `alignOrientation` attribute.
+
 License
 -------
 AligningRecyclerView (c) by Jorge Antonio Diaz-Benito Soriano

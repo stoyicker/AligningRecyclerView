@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AligningRecyclerView">
+        <attr name="alignOrientation" format="enum">
+            <enum name="vertical" value="1"/>
+            <enum name="horizontal" value="2"/>
+            <enum name="both" value="4"/>
+        </attr>
+    </declare-styleable>
+</resources>

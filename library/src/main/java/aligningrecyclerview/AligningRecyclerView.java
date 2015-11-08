@@ -9,6 +9,8 @@
 package aligningrecyclerview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -21,8 +23,27 @@ import android.util.AttributeSet;
  */
 public class AligningRecyclerView extends RecyclerView {
 
+  private int mAlignmentOrientation = ALIGN_ORIENTATION_BOTH;
+
+  public static final int ALIGN_ORIENTATION_VERTICAL = 1,
+      ALIGN_ORIENTATION_HORIZONTAL = 2,
+      ALIGN_ORIENTATION_BOTH = 4;
+
+  @IntDef(flag = true, value = {ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL, ALIGN_ORIENTATION_BOTH})
+  @interface AlignOrientation {
+  }
+
+  public void setAlignOrientation(@AlignOrientation int orientation) {
+    mAlignmentOrientation = orientation;
+  }
+
+  @AlignOrientation
+  int getAlignOrientation() {
+    return mAlignmentOrientation;
+  }
+
   private OnScrollListenerManagerOnItemTouchListener mOSLManager;
-  private SelfRemovingPositionTrackingOnScrollListener mOSL;
+  private PositionTrackingOnScrollListener mOSL;
 
   /**
    * {@inheritDoc}
@@ -31,7 +52,7 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context) {
     super(context);
-    init();
+    init(context, null);
   }
 
   /**
@@ -42,7 +63,7 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init();
+    init(context, attrs);
   }
 
   /**
@@ -54,11 +75,25 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context, final @Nullable AttributeSet attrs, final int defStyle) {
     super(context, attrs, defStyle);
-    init();
+    init(context, attrs);
   }
 
-  private void init() {
+  private void init(final @NonNull Context context, final AttributeSet attrs) {
     addOnItemTouchListener(mOSLManager = new OnScrollListenerManagerOnItemTouchListener());
+    addOnScrollListener(mOSL = new PositionTrackingOnScrollListener());
+
+    if (attrs != null) {
+      final TypedArray a = context.getTheme().obtainStyledAttributes(
+          attrs,
+          R.styleable.AligningRecyclerView,
+          0, 0);
+
+      try {
+        mAlignmentOrientation = a.getInt(R.styleable.AligningRecyclerView_alignOrientation, ALIGN_ORIENTATION_BOTH);
+      } finally {
+        a.recycle();
+      }
+    }
   }
 
   /**
@@ -101,7 +136,7 @@ public class AligningRecyclerView extends RecyclerView {
     return mOSLManager.isBoundTo(target);
   }
 
-  SelfRemovingPositionTrackingOnScrollListener getOSL() {
+  PositionTrackingOnScrollListener getOSL() {
     return mOSL;
   }
 }

@@ -10,6 +10,7 @@ package aligningrecyclerview;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.OnItemTouchListener {
 
   private final List<AligningRecyclerView> mScrollWatchers = new ArrayList<>();
-  private int mLastY;
+  private int mLastX, mLastY;
 
   @Override
   public boolean onInterceptTouchEvent(@NonNull final RecyclerView rv, @NonNull final
@@ -35,25 +36,55 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
   @Override
   public void onTouchEvent(@NonNull final RecyclerView rv, @NonNull final MotionEvent e) {
     for (final AligningRecyclerView x : mScrollWatchers) {
-      handleTouchEvent(rv, e, x);
+      handleTouchEvent((AligningRecyclerView) rv, e, x);
     }
   }
 
-  private void handleTouchEvent(@NonNull final RecyclerView thisRecyclerView, @NonNull final
+  private void handleTouchEvent(@NonNull final AligningRecyclerView thisRecyclerView, @NonNull final
   MotionEvent e, @NonNull final AligningRecyclerView paired) {
     final int action;
-    final SelfRemovingPositionTrackingOnScrollListener pairedOSL = paired.getOSL();
+    final PositionTrackingOnScrollListener thisOSL = thisRecyclerView.getOSL();
 
     if ((action = e.getAction()) == MotionEvent.ACTION_DOWN && paired
         .getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-      mLastY = pairedOSL.getScrollY();
-      thisRecyclerView.addOnScrollListener(pairedOSL);
+      Log.d("JORGETEST", "IF STATEMENT");
+      mLastX = thisOSL.getScrolledX();
+      mLastY = thisOSL.getScrolledY();
+      thisRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+        private AligningRecyclerView mPaired;
+
+        private RecyclerView.OnScrollListener init(final @NonNull AligningRecyclerView paired) {
+          mPaired = paired;
+          return this;
+        }
+
+        @Override
+        public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+          super.onScrolled(recyclerView, dx, dy);
+          final int orientation;
+          mPaired.scrollBy((orientation = mPaired.getAlignOrientation()) == AligningRecyclerView.ALIGN_ORIENTATION_VERTICAL ? 0 : dx, orientation == AligningRecyclerView
+              .ALIGN_ORIENTATION_HORIZONTAL ? 0 : dy);
+        }
+
+        @Override
+        public final void onScrollStateChanged(@NonNull final RecyclerView recyclerView, final int newState) {
+          super.onScrollStateChanged(recyclerView, newState);
+          if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+            recyclerView.removeOnScrollListener(this);
+          }
+        }
+      }.init(paired));
     }
     else {
-      if (action == MotionEvent.ACTION_UP && pairedOSL.getScrollY() == mLastY && thisRecyclerView
-          .getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-        pairedOSL.postShouldRemoveItself(true);
-        thisRecyclerView.removeOnScrollListener(pairedOSL);
+      Log.d("JORGETEST", "ELSE STATEMENT");
+      final @AligningRecyclerView.AlignOrientation int orientation = thisRecyclerView
+          .getAlignOrientation();
+      final int scrolledX = thisOSL.getScrolledX(), scrolledY = thisOSL.getScrolledY();
+      if (action == MotionEvent.ACTION_UP && (orientation == AligningRecyclerView
+          .ALIGN_ORIENTATION_VERTICAL && mLastY == scrolledY || orientation == AligningRecyclerView.ALIGN_ORIENTATION_HORIZONTAL && mLastX == scrolledX || mLastY == scrolledY && mLastX == scrolledX)) {
+        Log.d("JORGETEST", "ELSE -> IF STATEMENT");
+        thisRecyclerView.clearOnScrollListeners(); //TODO Remove the concrete one only
       }
     }
   }
