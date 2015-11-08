@@ -15,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
  */
 final class PositionTrackingOnScrollListener extends RecyclerView.OnScrollListener {
 
+  private int mScrolledX, mScrolledY;
+
   public int getScrolledX() {
     return mScrolledX;
   }
@@ -22,8 +24,6 @@ final class PositionTrackingOnScrollListener extends RecyclerView.OnScrollListen
   public int getScrolledY() {
     return mScrolledY;
   }
-
-  private int mScrolledX, mScrolledY;
 
   @Override
   public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
