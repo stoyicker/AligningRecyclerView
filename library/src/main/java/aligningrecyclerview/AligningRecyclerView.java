@@ -9,12 +9,14 @@
 package aligningrecyclerview;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * A RecyclerView that can synchronize its scrolling after one or more other RecyclerViews.
@@ -23,22 +25,12 @@ import android.util.AttributeSet;
  */
 public class AligningRecyclerView extends RecyclerView {
 
-  private int mAlignmentOrientation = ALIGN_ORIENTATION_VERTICAL;
-
   public static final int ALIGN_ORIENTATION_VERTICAL = 1,
       ALIGN_ORIENTATION_HORIZONTAL = 2;
 
-  @IntDef(flag = true, value = {ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL})
+  @Retention(RetentionPolicy.SOURCE)
+  @IntDef({ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL})
   @interface AlignOrientation {
-  }
-
-  public void setAlignOrientation(@AlignOrientation int orientation) {
-    mAlignmentOrientation = orientation;
-  }
-
-  @AlignOrientation
-  int getAlignOrientation() {
-    return mAlignmentOrientation;
   }
 
   private OnScrollListenerManagerOnItemTouchListener mOSLManager;
@@ -51,7 +43,7 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context) {
     super(context);
-    init(context, null);
+    init();
   }
 
   /**
@@ -62,7 +54,7 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init(context, attrs);
+    init();
   }
 
   /**
@@ -74,25 +66,12 @@ public class AligningRecyclerView extends RecyclerView {
    */
   public AligningRecyclerView(final Context context, final @Nullable AttributeSet attrs, final int defStyle) {
     super(context, attrs, defStyle);
-    init(context, attrs);
+    init();
   }
 
-  private void init(final @NonNull Context context, final AttributeSet attrs) {
+  private void init() {
     addOnItemTouchListener(mOSLManager = new OnScrollListenerManagerOnItemTouchListener());
     addOnScrollListener(mOSL = new PositionTrackingOnScrollListener());
-
-    if (attrs != null) {
-      final TypedArray a = context.getTheme().obtainStyledAttributes(
-          attrs,
-          R.styleable.AligningRecyclerView,
-          0, 0);
-
-      try {
-        mAlignmentOrientation = a.getInt(R.styleable.AligningRecyclerView_alignOrientation, ALIGN_ORIENTATION_VERTICAL);
-      } finally {
-        a.recycle();
-      }
-    }
   }
 
   /**
@@ -100,13 +79,14 @@ public class AligningRecyclerView extends RecyclerView {
    * binding, meaning that calling this method implies that scrolling this AligningRecyclerView will cause {@code target} to scroll.
    * Calling this method does not modify the behavior of the symmetric binding, if any.
    *
-   * @param target AligningRecyclerView The target to bind to.
+   * @param target        AligningRecyclerView The target to bind to.
+   * @param alignmentMode int The alignment mode to use for the binding.
    * @return The success of the operation. Usually the operation would fail if {@code target} is the
-   * own
-   * object or the binding already exists.
+   * own object or the binding already exists.
    */
-  public boolean bindTo(final @NonNull AligningRecyclerView target) {
-    return !isBoundTo(target) && mOSLManager.bindTo(target);
+  public boolean bindTo(final @NonNull AligningRecyclerView target, final @AlignOrientation int alignmentMode) {
+    return !isBoundTo(target, alignmentMode) && mOSLManager.createBinding(new Binding(this,
+        target, alignmentMode));
   }
 
   /**
@@ -115,24 +95,28 @@ public class AligningRecyclerView extends RecyclerView {
    * target} will no longer cause this AligningRecyclerView to scroll.
    * Calling this method does not modify the behavior of the symmetric binding, if any.
    *
-   * @param target AligningRecyclerView The target to unbind from.
+   * @param target        AligningRecyclerView The target to unbind from.
+   * @param alignmentMode int The alignment mode for the binging to be removed.
    * @return The success of the operation. Usually the operation would fail if {@code target} is the
    * own object or the binding does not already exists.
    */
-  public boolean unbindFrom(final @NonNull AligningRecyclerView target) {
-    return isBoundTo(target) && mOSLManager.unbindFrom(target);
+  public boolean unbindFrom(final @NonNull AligningRecyclerView target, final @AlignOrientation
+  int alignmentMode) {
+    return isBoundTo(target, alignmentMode) && mOSLManager.destroyBinding(new Binding(this,
+        target, alignmentMode));
   }
 
   /**
    * Verifies is this AligningRecyclerView is bound to the given AligningRecyclerView.
    *
-   * @param target AligningRecyclerView The target towards which the existence of the binding
-   *               shall be verified.
+   * @param target        AligningRecyclerView The target towards which the existence of the binding
+   *                      shall be verified.
+   * @param alignmentMode int The alignment mode to check for.
    * @return {@code true} if there is a binding from this object towards {@code target};
    * {@code false} otherwise.
    */
-  public boolean isBoundTo(final @NonNull AligningRecyclerView target) {
-    return mOSLManager.isBoundTo(target);
+  public boolean isBoundTo(final @NonNull AligningRecyclerView target, final @AlignOrientation int alignmentMode) {
+    return mOSLManager.bindingExists(new Binding(this, target, alignmentMode));
   }
 
   PositionTrackingOnScrollListener getOSL() {

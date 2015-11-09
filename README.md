@@ -36,9 +36,7 @@ Pull requests are welcome. See the [guidelines for contributing](https://github.
 
 Usage
 -----
-Just replace your RecyclerViews with AlignRecyclerViews and you're good to go! By default the
-scrolling will be synchronized vertically horizontally, but you can modify this behaviour using `AligningRecyclerView#setAlignOrientation(final @AlignOrientation int
-orientation)`. You can also set this attribute via the custom XML namespace using the `alignOrientation` attribute.
+Just replace your RecyclerViews with AlignRecyclerViews and you're good to go!
 
 License
 -------

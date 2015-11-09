@@ -24,28 +24,30 @@ public final class AlignmentManager {
   /**
    * Bi-directionally binds all the given AligningRecyclerView objects to each other.
    *
-   * @param toJoin AligningRecyclerView[] The objects to bind.
+   * @param orientation int The alignment mode to use.
+   * @param toJoin      AligningRecyclerView[] The objects to bind.
    */
-  public static void join(final @NonNull AligningRecyclerView... toJoin) {
+  public static void join(final @AligningRecyclerView.AlignOrientation int orientation, final @NonNull AligningRecyclerView... toJoin) {
     for (final AligningRecyclerView currentSrc : toJoin) {
       for (final AligningRecyclerView currentTarget : toJoin) {
         if (!currentSrc.equals(currentTarget)) {
-          currentSrc.bindTo(currentTarget);
+          currentSrc.bindTo(currentTarget, orientation);
         }
       }
     }
   }
 
   /**
-   * Removes all bindings withing the given AligningRecyclerView objects.
+   * Removes all bindings within the given AligningRecyclerView objects.
    *
-   * @param toDisjoin AligningRecyclerView[] The objects to unbind.
+   * @param toDisjoin   AligningRecyclerView[] The objects to unbind.
+   * @param orientation int The alignment mode to watch out for.
    */
-  public static void disjoin(final @NonNull AligningRecyclerView... toDisjoin) {
+  public static void disjoin(final @AligningRecyclerView.AlignOrientation int orientation, final @NonNull AligningRecyclerView... toDisjoin) {
     for (final AligningRecyclerView currentSrc : toDisjoin) {
       for (final AligningRecyclerView currentTarget : toDisjoin) {
         if (!currentSrc.equals(currentTarget)) {
-          currentSrc.unbindFrom(currentTarget);
+          currentSrc.unbindFrom(currentTarget, orientation);
         }
       }
     }

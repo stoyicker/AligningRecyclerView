@@ -21,7 +21,7 @@ import java.util.List;
  */
 final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.OnItemTouchListener {
 
-  private final List<AligningRecyclerView> mScrollWatchers = new ArrayList<>();
+  private final List<Binding> mScrollWatchers = new ArrayList<>();
   private int mLastX, mLastY;
 
   @Override
@@ -35,36 +35,39 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
 
   @Override
   public void onTouchEvent(@NonNull final RecyclerView rv, @NonNull final MotionEvent e) {
-    for (final AligningRecyclerView x : mScrollWatchers) {
-      handleTouchEvent((AligningRecyclerView) rv, e, x);
+    for (final Binding x : mScrollWatchers) {
+      //noinspection ResourceType
+      handleTouchEvent((AligningRecyclerView) rv, e, x.getTo(), x.getOrientation());
     }
   }
 
-  private void handleTouchEvent(@NonNull final AligningRecyclerView thisRecyclerView, @NonNull final
-  MotionEvent e, @NonNull final AligningRecyclerView paired) {
+  private void handleTouchEvent(@NonNull final AligningRecyclerView from, @NonNull final
+  MotionEvent e, @NonNull final AligningRecyclerView to, final @AligningRecyclerView
+      .AlignOrientation int orientation) {
     final int action;
-    final PositionTrackingOnScrollListener thisOSL = thisRecyclerView.getOSL();
+    final PositionTrackingOnScrollListener thisOSL = from.getOSL();
 
-    if ((action = e.getAction()) == MotionEvent.ACTION_DOWN && paired
+    if ((action = e.getAction()) == MotionEvent.ACTION_DOWN && to
         .getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
       Log.d("JORGETEST", "IF STATEMENT");
       mLastX = thisOSL.getScrolledX();
       mLastY = thisOSL.getScrolledY();
-      thisRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      from.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-        private AligningRecyclerView mPaired;
+        private AligningRecyclerView mTo;
+        private int mOrientation;
 
-        private RecyclerView.OnScrollListener init(final @NonNull AligningRecyclerView paired) {
-          mPaired = paired;
+        private RecyclerView.OnScrollListener init(final @NonNull AligningRecyclerView to, final
+        int orientation) {
+          mTo = to;
+          mOrientation = orientation;
           return this;
         }
 
         @Override
         public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
           super.onScrolled(recyclerView, dx, dy);
-          final int orientation;
-          mPaired.scrollBy((orientation = mPaired.getAlignOrientation()) == AligningRecyclerView.ALIGN_ORIENTATION_VERTICAL ? 0 : dx, orientation == AligningRecyclerView
-              .ALIGN_ORIENTATION_HORIZONTAL ? 0 : dy);
+          mTo.scrollBy(mOrientation == AligningRecyclerView.ALIGN_ORIENTATION_VERTICAL ? 0 : dx, mOrientation == AligningRecyclerView.ALIGN_ORIENTATION_HORIZONTAL ? 0 : dy);
         }
 
         @Override
@@ -74,17 +77,15 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
             recyclerView.removeOnScrollListener(this);
           }
         }
-      }.init(paired));
+      }.init(to, orientation));
     }
     else {
       Log.d("JORGETEST", "ELSE STATEMENT");
-      final @AligningRecyclerView.AlignOrientation int orientation = thisRecyclerView
-          .getAlignOrientation();
       final int scrolledX = thisOSL.getScrolledX(), scrolledY = thisOSL.getScrolledY();
       if (action == MotionEvent.ACTION_UP && (orientation == AligningRecyclerView
           .ALIGN_ORIENTATION_VERTICAL && mLastY == scrolledY || orientation == AligningRecyclerView.ALIGN_ORIENTATION_HORIZONTAL && mLastX == scrolledX || mLastY == scrolledY && mLastX == scrolledX)) {
         Log.d("JORGETEST", "ELSE -> IF STATEMENT");
-        thisRecyclerView.clearOnScrollListeners(); //TODO Remove the concrete one only
+        from.clearOnScrollListeners(); //TODO Remove the concrete one only
       }
     }
   }
@@ -93,15 +94,15 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
   public void onRequestDisallowInterceptTouchEvent(final boolean disallowIntercept) {
   }
 
-  boolean bindTo(final @NonNull AligningRecyclerView target) {
-    return mScrollWatchers.add(target);
+  boolean createBinding(final @NonNull Binding binding) {
+    return mScrollWatchers.add(binding);
   }
 
-  boolean unbindFrom(final @NonNull AligningRecyclerView target) {
-    return mScrollWatchers.remove(target);
+  boolean destroyBinding(final @NonNull Binding binding) {
+    return mScrollWatchers.remove(binding);
   }
 
-  boolean isBoundTo(final @NonNull AligningRecyclerView target) {
-    return mScrollWatchers.contains(target);
+  boolean bindingExists(final @NonNull Binding binding) {
+    return mScrollWatchers.contains(binding);
   }
 }
