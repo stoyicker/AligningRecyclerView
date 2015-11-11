@@ -30,7 +30,7 @@ public class AligningRecyclerView extends RecyclerView {
 
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({ALIGN_ORIENTATION_VERTICAL, ALIGN_ORIENTATION_HORIZONTAL})
-  @interface AlignOrientation {
+  public @interface AlignOrientation {
   }
 
   private OnScrollListenerManagerOnItemTouchListener mOSLManager;
