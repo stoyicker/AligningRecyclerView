@@ -30,7 +30,7 @@ compile 'com.github.stoyicker:aligningrecyclerview:(insert latest version)'
 </dependency>
 ```
 
-Compatible with API 7 and higher.
+Compatible with API 9 and higher.
 
 Pull requests are welcome. See the [guidelines for contributing](https://github.com/Stoyicker/AligningRecyclerView/blob/master/CONTRIBUTING.md "CONTRIBUTING.md").
 
