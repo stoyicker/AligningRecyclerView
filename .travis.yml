@@ -2,8 +2,10 @@ language: android
 sudo: false ## Enable container-based infrastructure
 android:
   components:
-    - android-23
     - tools
+    - build-tools-23.0.2
+    - android-23
+    - extra-android-m2repository
 jdk:
   - oraclejdk8
 branches:
