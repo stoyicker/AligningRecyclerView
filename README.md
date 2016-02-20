@@ -5,8 +5,7 @@ master [![Build Status](https://travis-ci.org/stoyicker/AligningRecyclerView.svg
 
 Download
 --------
-[![Release](https://img.shields.io/github/release/stoyicker/AligningRecyclerView.svg?label=gradle)](https://jitpack.io/#stoyicker/AligningRecyclerView)
-[![Release](https://img.shields.io/github/release/stoyicker/AligningRecyclerView.svg?label=maven)](https://jitpack.io/#stoyicker/AligningRecyclerView)
+[![Release](https://jitpack.io/v/Stoyicker/AligningRecyclerView.svg)](https://jitpack.io/#Stoyicker/AligningRecyclerView)
 
 **Gradle**
 ```groovy
