@@ -109,8 +109,7 @@ public class AligningRecyclerView extends RecyclerView {
   /**
    * Verifies is this AligningRecyclerView is bound to the given AligningRecyclerView.
    *
-   * @param target        AligningRecyclerView The target towards which the existence of the binding
-   *                      shall be verified.
+   * @param target        AligningRecyclerView The target towards which the existence of the binding shall be verified.
    * @param alignmentMode int The alignment mode to check for.
    * @return {@code true} if there is a binding from this object towards {@code target};
    * {@code false} otherwise.

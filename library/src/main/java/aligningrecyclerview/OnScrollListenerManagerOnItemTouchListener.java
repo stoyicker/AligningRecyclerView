@@ -26,10 +26,20 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
   @Override
   public boolean onInterceptTouchEvent(@NonNull final RecyclerView rv, @NonNull final
   MotionEvent e) {
+    boolean ret = false;
+
     if (rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
       onTouchEvent(rv, e);
     }
-    return Boolean.FALSE;
+
+    for (final Binding x : mScrollWatchers) {
+      if (x.getFrom() == rv && x.getTo().getScrollState() != RecyclerView.SCROLL_STATE_IDLE){
+        ret = true;
+        break;
+      }
+    }
+
+    return ret;
   }
 
   @Override

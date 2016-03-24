@@ -17,6 +17,7 @@ class Binding {
     mOrientation = orientation;
   }
 
+  @AligningRecyclerView.AlignOrientation
   int getOrientation() {
     return mOrientation;
   }
@@ -29,4 +30,22 @@ class Binding {
     return mFrom;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    final Binding binding = (Binding) o;
+
+    return mOrientation == binding.mOrientation && mFrom.equals(binding.mFrom) && mTo.equals(binding.mTo);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = mFrom.hashCode();
+    result = 31 * result + mTo.hashCode();
+    result = 31 * result + mOrientation;
+    return result;
+  }
 }
