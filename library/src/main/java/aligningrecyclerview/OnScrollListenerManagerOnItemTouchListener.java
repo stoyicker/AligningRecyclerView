@@ -10,7 +10,6 @@ package aligningrecyclerview;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -49,7 +48,6 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
 
     if ((action = e.getAction()) == MotionEvent.ACTION_DOWN && to
         .getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-      Log.d("JORGETEST", "IF STATEMENT");
       mLastX = thisOSL.getScrolledX();
       mLastY = thisOSL.getScrolledY();
       from.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -79,12 +77,10 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
         }
       }.init(to, orientation));
     } else {
-      Log.d("JORGETEST", "ELSE STATEMENT");
       final int scrolledX = thisOSL.getScrolledX(), scrolledY = thisOSL.getScrolledY();
       if (action == MotionEvent.ACTION_UP && (orientation == AligningRecyclerView
           .ALIGN_ORIENTATION_VERTICAL && mLastY == scrolledY || orientation == AligningRecyclerView.ALIGN_ORIENTATION_HORIZONTAL && mLastX == scrolledX || mLastY == scrolledY && mLastX == scrolledX)) {
-        Log.d("JORGETEST", "ELSE -> IF STATEMENT");
-        from.clearOnScrollListeners(); //TODO Remove the concrete one only
+        from.clearOnScrollListeners();
       }
     }
   }
