@@ -41,6 +41,17 @@ ProGuard
 --------
 No additional configuration is required.
 
+I can't touch slave views until they're idle. Please fix!
+---------------------------------------------------------
+First of all, note that this behavior is intended and not going to be fixed. **You can only scroll an AligningRecyclerView manually if it is not scrolling or is scrolling because you manually requested so (rather than because of following another AligningRecyclerView)**. This said, let's take a look at why:
+- **Case 1: Trying to scroll an AligningRecyclerView that is bound to another one where a scrolling was initiated with a two-way binding**: This case would pop an infinite mutual notification between the views, which is obviously not desirable.
+- **Case 2: Trying to scroll an AligningRecyclerView that is bound to another one where a scrolling was initiated with a one-way binding**: This case can be solved in extremely different ways (like breaking the binding on touch, breaking it and re-adding it later), so I prefer to default to what I consider the simplest one. You are free to override [OnScrollListenerManagerOnItemTouchListener](https://github.com/stoyicker/AligningRecyclerView/blob/master/library/src/main/java/aligningrecyclerview/OnScrollListenerManagerOnItemTouchListener.java "OnScrollListenerManagerOnItemTouchListener") (which is public for this purpose) and make your adjustments:
+```java
+if (rv.getScrollState() != RecyclerView.SCROLL_STATE_IDLE) {
+  ...
+}
+```
+
 License
 -------
 AligningRecyclerView (c) by Jorge Antonio Diaz-Benito Soriano

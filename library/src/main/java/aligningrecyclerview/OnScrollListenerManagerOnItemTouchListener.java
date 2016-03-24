@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author Jorge Antonio Diaz-Benito Soriano (github.com/Stoyicker).
  */
-final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.OnItemTouchListener {
+public class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.OnItemTouchListener {
 
   private final List<Binding> mScrollWatchers = new ArrayList<>();
   private int mLastX, mLastY;
@@ -33,7 +33,7 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
     }
 
     for (final Binding x : mScrollWatchers) {
-      if (x.getFrom() == rv && x.getTo().getScrollState() != RecyclerView.SCROLL_STATE_IDLE){
+      if (x.getFrom() == rv && x.getTo().getScrollState() != RecyclerView.SCROLL_STATE_IDLE) {
         ret = true;
         break;
       }

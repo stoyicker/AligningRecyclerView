@@ -18,15 +18,15 @@ class Binding {
   }
 
   @AligningRecyclerView.AlignOrientation
-  int getOrientation() {
+  public int getOrientation() {
     return mOrientation;
   }
 
-  AligningRecyclerView getTo() {
+  public AligningRecyclerView getTo() {
     return mTo;
   }
 
-  AligningRecyclerView getFrom() {
+  public AligningRecyclerView getFrom() {
     return mFrom;
   }
 
