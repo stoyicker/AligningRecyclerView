@@ -78,8 +78,7 @@ final class OnScrollListenerManagerOnItemTouchListener implements RecyclerView.O
           }
         }
       }.init(to, orientation));
-    }
-    else {
+    } else {
       Log.d("JORGETEST", "ELSE STATEMENT");
       final int scrolledX = thisOSL.getScrolledX(), scrolledY = thisOSL.getScrolledY();
       if (action == MotionEvent.ACTION_UP && (orientation == AligningRecyclerView

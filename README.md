@@ -37,6 +37,10 @@ Usage
 -----
 Just replace your RecyclerViews with AlignRecyclerViews and you're good to go!
 
+ProGuard
+--------
+No additional configuration is required.
+
 License
 -------
 AligningRecyclerView (c) by Jorge Antonio Diaz-Benito Soriano
